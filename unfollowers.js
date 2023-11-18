@@ -38,7 +38,7 @@ const getUnfollowers = () => {
       const unfollowers = following.filter(x => !followers.includes(x));
 
       // display unfollowers
-      document.getElementById('unfollowers').innerHTML = unfollowers.join(', ');
+      document.getElementById('unfollowers').innerHTML = unfollowers.join("<br />");
     };
     follower_reader.readAsText(followers_file);
   };
