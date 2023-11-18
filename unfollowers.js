@@ -1,5 +1,5 @@
 // access array of account objects and reduce to usernames
-const getUsers = (accounts) =>
+const getUsers = accounts =>
   accounts.map((f) => f.string_list_data[0].value).filter((f) => f);
 
 // create hyperlink text for a given unfollower account
@@ -11,9 +11,10 @@ const createUnfollowerLink = (unfollower) =>
   "</a>" +
   "<br>";
 
-const getError = (msg) =>
-  (document.getElementById("unfollowers").innerHTML =
-    '<span class="error">' + msg + "</span>");
+// populate error field with given message
+const getError = msg =>
+  document.getElementById("unfollowers").innerHTML =
+    '<span class="error">' + msg + "</span>";
 
 // compare follower & following data via instagram and return list of unfollowers
 const getUnfollowers = () => {
