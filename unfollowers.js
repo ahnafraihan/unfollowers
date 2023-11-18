@@ -54,7 +54,7 @@ const getUnfollowers = () => {
 
       // display unfollowers
       if (!unfollowers.length) {
-        document.getElementById("unfollowers").innerHTML = "No unfollowers";
+        document.getElementById("unfollowers").innerHTML = "<span class=\"gradient\"> No unfollowers </span>";
       } else {
         let unfollowersHTML = "";
         for (unfollower of unfollowers) {
