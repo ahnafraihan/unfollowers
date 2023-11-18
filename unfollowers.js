@@ -4,7 +4,7 @@ const getUsers = (accounts) =>
 
 // create hyperlink text for a given unfollower account
 const createUnfollowerLink = (unfollower) =>
-  '<a href="https://www.instagram.com/' +
+  '<a class="unfollower" href="https://www.instagram.com/' +
   unfollower +
   '" target="_blank"> @' +
   unfollower +

@@ -9,7 +9,6 @@ body {
   text-decoration: none;
 }
 
-
 .gradient {
   background: radial-gradient(
       circle farthest-corner at 35% 90%,
@@ -66,6 +65,10 @@ body {
 
 .download {
   text-align: center;
+}
+
+.unfollower {
+  color: cadetblue;
 }
 
 #unfollowers {
