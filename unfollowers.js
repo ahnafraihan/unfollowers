@@ -1,6 +1,15 @@
 // access array of account objects and reduce to usernames
 const getUsers = accounts => accounts.map(f => f.string_list_data[0].value).filter(f => f);
 
+// creates hyperlink text for a given unfollower account
+const createUnfollowerLink = unfollower => 
+  "<a href=\"https://www.instagram.com/" + 
+  unfollower + 
+  "\" target=\"_blank\"> @" + 
+  unfollower + 
+  "</a>" + 
+  "<br>";
+
 // compare follower & following data via instagram and return list of unfollowers
 const getUnfollowers = () => {
   // get files for following & followers
@@ -46,10 +55,14 @@ const getUnfollowers = () => {
       if (!unfollowers.length) {
         document.getElementById('unfollowers').innerHTML = "No unfollowers";
       } else {
-        document.getElementById('unfollowers').innerHTML = unfollowers.join("<br />");
+        let unfollowersHTML = "";
+        for (unfollower of unfollowers) {
+          unfollowersHTML += createUnfollowerLink(unfollower);
+        }
+        document.getElementById('unfollowers').innerHTML = unfollowersHTML;
       }
-    };
+    }
     follower_reader.readAsText(followers_file);
-  };
+  }
   following_reader.readAsText(following_file);
 }
