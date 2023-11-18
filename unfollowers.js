@@ -21,7 +21,6 @@ const getUnfollowers = () => {
     alert('upload following.json');
     return;
   }
-
   if (!followers_file) {
     alert('upload followers_1.json ');
     return;
@@ -45,7 +44,7 @@ const getUnfollowers = () => {
         following = getUsers(followingJSON.relationships_following);
         followers = getUsers(followersJSON);
       } catch (error) {
-        document.getElementById('unfollowers').innerHTML = "Error processing your data. Make sure correct files were uploaded";
+        document.getElementById('unfollowers').innerHTML = "Error processing your data. Make sure the correct files were uploaded";
       }
 
       // get reverse intersection of lists to find unfollowers
