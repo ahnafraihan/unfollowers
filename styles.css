@@ -53,8 +53,11 @@ body {
   justify-content: space-evenly;
   margin-bottom: 24px;
   width: 52%;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1024px) {
     width: 100%;
+  }
+  @media only screen and (max-width: 600px) {
+    justify-content: space-around;
   }
 }
 
