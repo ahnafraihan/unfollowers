@@ -65,3 +65,7 @@ input[type="file"] {
   padding: 5px;
   width: 100%;
 }
+
+a {
+  color: black;
+}
