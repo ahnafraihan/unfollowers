@@ -27,13 +27,13 @@ body {
   }
 }
 
-.unfollowers {
-  margin-top: 20px;
-  padding: 10px;
+.download {
   text-align: center;
 }
 
-.download {
+#unfollowers {
+  margin: 20px;
+  padding: 10px;
   text-align: center;
 }
 
