@@ -38,7 +38,11 @@ const getUnfollowers = () => {
       const unfollowers = following.filter(x => !followers.includes(x));
 
       // display unfollowers
-      document.getElementById('unfollowers').innerHTML = unfollowers.join("<br />");
+      if (!unfollowers.length) {
+        document.getElementById('unfollowers').innerHTML = "No unfollowers";
+      } else {
+        document.getElementById('unfollowers').innerHTML = unfollowers.join("<br />");
+      }
     };
     follower_reader.readAsText(followers_file);
   };
