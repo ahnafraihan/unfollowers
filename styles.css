@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
-font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .inputs-container {
@@ -10,13 +10,13 @@ font-family: 'Roboto', sans-serif;
   margin-bottom: 24px;
   width:52%;
   @media only screen and (max-width: 600px) {
-    width:100%;
+    width: 100%;
   }
 }
 
 .input-container {
   @media only screen and (max-width: 600px) {
-    width:40%;
+    width: 40%;
   }
 }
 
@@ -46,15 +46,6 @@ input[type="file"] {
   margin-top:2px;
   padding: 5px;
   width: 100%;
-}
-
-#compare {
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 #result {
