@@ -46,7 +46,7 @@ const getUnfollowers = () => {
         followers = getUsers(followersJSON);
       } catch (error) {
         document.getElementById("unfollowers").innerHTML =
-          "<span class=\"error\">Error processing your data. Make sure the correct files were uploaded</span>";
+          "<span class=\"error\">Error processing your data. <br/> Make sure the correct files were uploaded.</span>";
       }
 
       // get reverse intersection of lists to find unfollowers
