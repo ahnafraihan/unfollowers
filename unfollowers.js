@@ -46,7 +46,7 @@ const getUnfollowers = () => {
         followers = getUsers(followersJSON);
       } catch (error) {
         document.getElementById("unfollowers").innerHTML =
-          "Error processing your data. Make sure the correct files were uploaded";
+          "<span class=\"error\">Error processing your data. Make sure the correct files were uploaded</span>";
       }
 
       // get reverse intersection of lists to find unfollowers
@@ -54,7 +54,7 @@ const getUnfollowers = () => {
 
       // display unfollowers
       if (!unfollowers.length) {
-        document.getElementById("unfollowers").innerHTML = "<span class=\"gradient\"> No unfollowers </span>";
+        document.getElementById("unfollowers").innerHTML = "<span class=\"gradient\">No unfollowers</span>";
       } else {
         let unfollowersHTML = "";
         for (unfollower of unfollowers) {
