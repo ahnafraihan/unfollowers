@@ -2,7 +2,7 @@
 const getUsers = (accounts) =>
   accounts.map((f) => f.string_list_data[0].value).filter((f) => f);
 
-// creates hyperlink text for a given unfollower account
+// create hyperlink text for a given unfollower account
 const createUnfollowerLink = (unfollower) =>
   '<a href="https://www.instagram.com/' +
   unfollower +
