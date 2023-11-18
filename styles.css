@@ -9,10 +9,15 @@ font-family: 'Roboto', sans-serif;
   justify-content: space-evenly;
   margin-bottom: 24px;
   width:52%;
+  @media only screen and (max-width: 600px) {
+    width:100%;
+  }
 }
 
 .input-container {
-
+  @media only screen and (max-width: 600px) {
+    width:40%;
+  }
 }
 
 h1 {
