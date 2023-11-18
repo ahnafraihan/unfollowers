@@ -11,6 +11,10 @@ const createUnfollowerLink = (unfollower) =>
   "</a>" +
   "<br>";
 
+const getError = (msg) =>
+  (document.getElementById("unfollowers").innerHTML =
+    '<span class="error">' + msg + "</span>");
+
 // compare follower & following data via instagram and return list of unfollowers
 const getUnfollowers = () => {
   // get files for following & followers
@@ -19,11 +23,11 @@ const getUnfollowers = () => {
 
   // confirm files were uploaded
   if (!following_file) {
-    alert("upload following.json");
+    getError("Upload your following data (following.json)");
     return;
   }
   if (!followers_file) {
-    alert("upload followers_1.json ");
+    getError("Upload your followers data (followers_1.json)");
     return;
   }
 
@@ -45,8 +49,9 @@ const getUnfollowers = () => {
         following = getUsers(followingJSON.relationships_following);
         followers = getUsers(followersJSON);
       } catch (error) {
-        document.getElementById("unfollowers").innerHTML =
-          '<span class="error">Error processing your data. <br/> Make sure the correct files were uploaded.</span>';
+        getError(
+          "Error processing your data. <br/> Make sure the correct files were uploaded.",
+        );
       }
 
       // get reverse intersection of lists to find unfollowers
