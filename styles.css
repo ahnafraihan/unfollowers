@@ -11,17 +11,17 @@ body {
   justify-content: center;
 }
 
-.inputs-container {
+.inputs {
   display: flex;  
   justify-content: space-evenly;
   margin-bottom: 24px;
-  width:52%;
+  width: 52%;
   @media only screen and (max-width: 600px) {
     width: 100%;
   }
 }
 
-.input-container {
+.input{
   @media only screen and (max-width: 600px) {
     width: 40%;
   }
@@ -60,7 +60,7 @@ label {
 input[type="file"] {
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top:2px;
+  margin-top: 2px;
   padding: 5px;
   width: 100%;
 }
