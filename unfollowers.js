@@ -31,8 +31,13 @@ const getUnfollowers = () => {
       const followersJSON = JSON.parse(this.result);
       
       // get list of usernames (following & followers)
-      const following = getUsers(followingJSON.relationships_following);
-      const followers = getUsers(followersJSON);
+      let following, followers;
+      try {
+        following = getUsers(followingJSON.relationships_following);
+        followers = getUsers(followersJSON);
+      } catch (error) {
+        document.getElementById('unfollowers').innerHTML = "Error processing your data. Make sure correct files were uploaded";
+      }
 
       // get reverse intersection of lists to find unfollowers
       const unfollowers = following.filter(x => !followers.includes(x));
