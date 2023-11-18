@@ -5,6 +5,12 @@ body {
 }
 
 .header {
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+
+.gradient {
   background: radial-gradient(
       circle farthest-corner at 35% 90%,
       #fec564,
@@ -31,8 +37,6 @@ body {
       #f77638 70%,
       #fec66d 100%
     );
-  font-size: 1.5em;
-  text-decoration: none;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
