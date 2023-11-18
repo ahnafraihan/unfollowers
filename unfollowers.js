@@ -24,11 +24,11 @@ const getUnfollowers = () => {
 
   // confirm files were uploaded
   if (!following_file) {
-    getError("Upload your following data (following.json)");
+    getError("Upload your following data<br/>(following.json)");
     return;
   }
   if (!followers_file) {
-    getError("Upload your followers data (followers_1.json)");
+    getError("Upload your followers data<br/>(followers_1.json)");
     return;
   }
 
