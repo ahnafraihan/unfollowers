@@ -68,3 +68,7 @@ input[type="file"] {
 a {
   color: black;
 }
+
+ol {
+  margin-top: 8px;
+}
