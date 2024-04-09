@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
+  color: white;
   font-family: "Roboto", sans-serif;
+  background: black;
 }
 
 .header {
@@ -114,8 +116,22 @@ input[type="file"] {
   width: 100%;
 }
 
+input::file-selector-button {
+  background: white;
+  border: none;
+  border-radius: 3px;
+  font-family: "Roboto", sans-serif;
+}
+
+button {
+  background: white;
+  border: none;
+  border-radius: 3px;
+  font-family: "Roboto", sans-serif;
+}
+
 a {
-  color: black;
+  color: white;
 }
 
 ol {
