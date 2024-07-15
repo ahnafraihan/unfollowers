@@ -1,5 +1,5 @@
 // access array of account objects and reduce to usernames
-const getUsers = accounts =>
+const getUsers = (accounts) =>
   accounts.map((f) => f.string_list_data[0].value).filter((f) => f);
 
 // create hyperlink text for a given unfollower account
@@ -11,66 +11,69 @@ const createUnfollowerLink = (unfollower) =>
   "</a>" +
   "<br>";
 
+// populate unfollowers field with given message
+const sendUnfollowers = (msg) =>
+  (document.getElementById("unfollowers").innerHTML = msg);
+
 // populate error field with given message
-const getError = msg =>
-  document.getElementById("unfollowers").innerHTML =
-    '<span class="error">' + msg + "</span>";
+const getError = (msg) =>
+  (document.getElementById("unfollowers").innerHTML =
+    '<span class="error">' + msg + "</span>");
 
 // compare follower & following data via instagram and return list of unfollowers
-const getUnfollowers = () => {
-  // get files for following & followers
-  const following_file = document.getElementById("following_file").files[0];
-  const followers_file = document.getElementById("followers_file").files[0];
+const getUnfollowers = async () => {
+  const unfollowers_zip = document.getElementById("unfollowers_zip").files[0];
 
-  // confirm files were uploaded
-  if (!following_file) {
-    getError("Upload your following data<br/>(following.json)");
-    return;
-  }
-  if (!followers_file) {
-    getError("Upload your followers data<br/>(followers_1.json)");
+  // confirm zip file was uploaded
+  if (!unfollowers_zip) {
+    getError("Upload your unfollowers zip file.");
     return;
   }
 
-  // instantiate file readers
-  const following_reader = new FileReader();
-  const follower_reader = new FileReader();
+  // unzip unfollowers file
+  const zip = await JSZip.loadAsync(unfollowers_zip);
 
-  following_reader.onload = function () {
-    // parse following into JSON object
-    const followingJSON = JSON.parse(this.result);
+  // get followers_and_following folder
+  const followers_and_following = zip.folder(
+    "connections/followers_and_following",
+  );
 
-    follower_reader.onload = function () {
-      // parse followers into JSON object
-      const followersJSON = JSON.parse(this.result);
+  // get followers & following promises
+  const followers_promise = followers_and_following.file("followers_1.json")?.async("string");
+  const following_promise = followers_and_following.file("following.json")?.async("string");
 
-      // get list of usernames (following & followers)
-      let following, followers;
-      try {
-        following = getUsers(followingJSON.relationships_following);
-        followers = getUsers(followersJSON);
-      } catch (error) {
-        getError(
-          "Error processing your data. <br/> Make sure the correct files were uploaded.",
-        );
-      }
+  // retrieve followers & following files via promises
+  const [followers_file, following_file] = await Promise.all([
+    followers_promise,
+    following_promise,
+  ]);
 
-      // get reverse intersection of lists to find unfollowers
-      const unfollowers = following.filter((x) => !followers.includes(x));
+  // parse followering & following into JSON objects
+  const followers_json = JSON.parse(followers_file);
+  const following_json = JSON.parse(following_file);
 
-      // display unfollowers
-      if (!unfollowers.length) {
-        document.getElementById("unfollowers").innerHTML =
-          '<span class="gradient">No unfollowers</span>';
-      } else {
-        let unfollowersHTML = "";
-        for (unfollower of unfollowers) {
-          unfollowersHTML += createUnfollowerLink(unfollower);
-        }
-        document.getElementById("unfollowers").innerHTML = unfollowersHTML;
-      }
-    };
-    follower_reader.readAsText(followers_file);
-  };
-  following_reader.readAsText(following_file);
+  // get list of usernames (following & followers)
+  let following, followers;
+  try {
+    followers = getUsers(followers_json);
+    following = getUsers(following_json.relationships_following);
+  } catch (error) {
+    getError(
+      "Error processing your data. <br/> Make sure the correct files were uploaded.",
+    );
+  }
+
+  // get reverse intersection of lists to find unfollowers
+  const unfollowers = following.filter((x) => !followers.includes(x));
+
+  // display unfollowers
+  if (!unfollowers.length) {
+    sendUnfollowers('<span class="gradient">No unfollowers</span>');
+  } else {
+    let unfollowersHTML = "";
+    for (unfollower of unfollowers) {
+      unfollowersHTML += createUnfollowerLink(unfollower);
+    }
+    sendUnfollowers(unfollowersHTML);
+  }
 };
