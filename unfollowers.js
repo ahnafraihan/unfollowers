@@ -48,12 +48,12 @@ const getUnfollowers = async () => {
     following_promise,
   ]);
 
-  // parse followering & following into JSON objects
+  // parse followers & following into JSON objects
   const followers_json = JSON.parse(followers_file);
   const following_json = JSON.parse(following_file);
 
-  // get list of usernames (following & followers)
-  let following, followers;
+  // get list of usernames (followers & following)
+  let followers, following;
   try {
     followers = getUsers(followers_json);
     following = getUsers(following_json.relationships_following);
